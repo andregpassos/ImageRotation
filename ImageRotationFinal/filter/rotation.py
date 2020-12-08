@@ -11,7 +11,7 @@ rgb_channels_size = 3  # 3 because means RGB. Do not change this!
 
 def extended_matrix(image_name, theta):
     # Opening original image
-    input_image = Image.open(image_name)
+    input_image = Image.open(image_name).convert("RGB")
     width, height = input_image.size
     
     # sin(theta) and cos(theta)
@@ -42,7 +42,7 @@ def extended_matrix(image_name, theta):
 # Rotation based on angle 'theta' and center of rotation (xCenter, yCenter)
 def rotate_image_dmap(image_name, theta): 
     # Opening image
-    input_image = Image.open(image_name)
+    input_image = Image.open(image_name).convert("RGB)
     width, height = input_image.size
     
     # Angle fix
@@ -108,7 +108,7 @@ def rotate_image_dmap(image_name, theta):
 
 def bilinear_interpolation(image_name, x, y):
     # Opening image
-    input_image = Image.open(image_name)
+    input_image = Image.open(image_name).convert("RGB")
     
     i = int(x)
     j = int(y)
@@ -155,11 +155,6 @@ def bilinear_interpolation(image_name, x, y):
     
     # (R, G, B) values of the corresponding pixel in the original image
     original_pixel = f_xy
-    
-    # Fix for images that have more than 3 channels
-    if len(original_pixel) > 3:
-        for i in range(3, len(pixel)): 
-            del(original_pixel[i])
         
     return original_pixel
 
